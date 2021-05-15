@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Title</title>
+    <style type="text/css" media="all">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #F4F5FF;
+            color: #10122E;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        h1 {
+            margin-top: 4px;
+            color: #00053D;
+        }
+
+        #preview {
+            height: 230px;
+            width: 18rem;
+            margin-bottom: 18px;
+            background: #FFFFFF;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.08);
+            transition: ease-in-out 0.78s;
+        }
+
+        #text {
+            font-size: 25px;
+        }
+
+        #colorpicker {
+            width: 19rem;
+            background: #FFFFFF;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: 0.78s;
+        }
+
+        #colorpicker:hover {
+            box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        .settings {
+            font-size: 24px;
+        }
+
+        #colorpicker div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        #textcolor,
+        #bgcolor {
+            background: #FFFFFF;
+            padding: 0;
+            border: none;
+            height: 40px;
+            width: 110px;
+            outline: none;
+        }
+
+
+
+        input:disabled {
+            width: 80px;
+            height: 29px;
+            background: #FFFFFF;
+            border: 1px solid #1A2DFF;
+            color: #1A2DFF;
+            padding: 10px;
+            text-align: center;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background: #1A2DFF;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
+            cursor: pointer;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>
+            Text-Background <br /> Color Tester
+        </h1>
+    </center><br />
+    <div id="preview">
+        <span id="text">
+            "Hello World!";
+        </span>
+    </div>
+    <div id="colorpicker">
+        <span class="settings">Settings</span>
+        <div class="txt">
+            <span>Text color:</span>
+            <input id="textcolor" type="color" value="#000000" onchange="colortext();" />
+        </div>
+        <div class="bg">
+            <span>Background color:</span>
+            <input id="bgcolor" type="color" value="#ffffff" onchange="setbg();" />
+        </div><br /><br />
+        <span class="settings">Snippets</span>
+        <div id="textcolorhexvalue">
+            <span>Text Color:</span><input type="text" id="txtcopy" value="#000000" disabled />
+            <button onclick="copytxtcolor();">Copy</button>
+        </div>
+        <div id="backgroundcolorhexvalue">
+            <span>BG Color:</span><input type="text" id="bgcopy" value="#FFFFFF" disabled />
+            <button onclick="copybgcolor();">Copy</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var text = document.getElementById("text");
+        var bg = document.getElementById("preview");
+
+        function colortext() {
+            var colorval = document.getElementById("textcolor").value;
+            text.style.color = colorval;
+            document.getElementById("textcolorhexvalue").innerHTML = `<span>Text Color:</span><input type="text" id="txtcopy" value="${colorval}" disabled/>
+            <button onclick="copytxtcolor();">Copy</button>
+            `;
+            document.getElementById("txtcopy").value = colorval;
+        }
+
+        function setbg() {
+            var bgcolor = document.getElementById("bgcolor").value;
+            bg.style.backgroundColor = bgcolor;
+            document.getElementById("backgroundcolorhexvalue").innerHTML = `<span>BG Color:</span><input type="text" id="bgcopy" value="${bgcolor}" disabled/>
+            <button onclick="copybgcolor();">Copy</button>
+            `;
+            document.getElementById("bgcopy").value = bgcolor;
+        }
+
+        function copybgcolor() {var bgcopy = document.getElementById("bgcopy");
+        bgcopy.select();
+        bgcopy.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert(`${bgcopy.value} Copied`)
+        }
+        
+        function copytxtcolor() {
+        var txtcopy = document.getElementById("txtcopy");
+        txtcopy.select();
+        txtcopy.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+        alert(`${txtcopy.value} Copied`)
+        }
+        </script>
+        </body>
+        
+        </html>
